@@ -3,6 +3,8 @@
 #
 
 module "kubernetes_manifest" {
+  depends_on = [kubernetes_namespace.sveltos]
+
   source = "./modules/kubernetes_manifest"
 
   manifests_urls = var.manifests_urls
@@ -19,6 +21,8 @@ resource "kubernetes_namespace" "sveltos" {
 }
 
 resource "helm_release" "sveltos" {
+  depends_on = [kubernetes_namespace.sveltos]
+
   name       = var.release_name
   repository = "https://projectsveltos.github.io/helm-charts"
   chart      = "projectsveltos"
