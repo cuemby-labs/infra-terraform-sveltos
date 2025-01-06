@@ -13,11 +13,17 @@ module "kubernetes_manifest" {
 #
 # Sveltos resources
 #
+data "kubernetes_namespace" "sveltos" {
+  metadata {
+    name = var.namespace_name
+  }
+}
 
 resource "kubernetes_namespace" "sveltos" {
   metadata {
     name = var.namespace_name
   }
+  count = length(data.kubernetes_namespace.sveltos.id) == 0 ? 1 : 0
 }
 
 resource "helm_release" "sveltos" {
