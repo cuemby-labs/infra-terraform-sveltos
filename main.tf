@@ -2,12 +2,18 @@
 # Install CRDs
 #
 
-module "kubernetes_manifest" {
-  depends_on = [kubernetes_namespace.sveltos]
+# module "kubernetes_manifest" {
+#   depends_on = [kubernetes_namespace.sveltos]
 
-  source = "./modules/kubernetes_manifest"
+#   source = "./modules/kubernetes_manifest"
 
-  manifests_urls = var.manifests_urls
+#   manifests_urls = var.manifests_urls
+# }
+
+resource "null_resource" "apply_sveltos_crds" {
+  provisioner "local-exec" {
+    command = "kubectl apply -f ${var.manifests_urls}"
+  }
 }
 
 #
