@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: OpenAPI schema for Sveltos template .
+  title: OpenAPI schema for template .
 components:
   schemas:
     variables:
@@ -8,14 +8,10 @@ components:
       properties:
         manifests_urls:
           title: Manifests Urls
-          type: array
+          type: string
           description: URLs list from the raw manifests
-          default:
-          - https://raw.githubusercontent.com/projectsveltos/sveltos/v0.41.0/manifest/crds/sveltos_crds.yaml
-          items:
-            type: string
+          default: https://raw.githubusercontent.com/projectsveltos/sveltos/v0.41.0/manifest/crds/sveltos_crds.yaml
           x-walrus-ui:
-            colSpan: 12
             group: Basic
             order: 2
         release_name:
