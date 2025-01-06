@@ -1,10 +1,167 @@
 openapi: 3.0.3
 info:
-  title: OpenAPI schema for template walrus-template-template
+  title: OpenAPI schema for Sveltos template .
 components:
   schemas:
     variables:
       type: object
+      properties:
+        manifests_urls:
+          title: Manifests Urls
+          type: array
+          description: URLs list from the raw manifests
+          default:
+          - https://raw.githubusercontent.com/projectsveltos/sveltos/v0.41.0/manifest/crds/sveltos_crds.yaml
+          items:
+            type: string
+          x-walrus-ui:
+            colSpan: 12
+            group: Basic
+            order: 2
+        release_name:
+          title: Release Name
+          type: string
+          description: The name of the Helm release.
+          default: projectsveltos
+          x-walrus-ui:
+            group: Basic
+            order: 3
+        namespace_name:
+          title: Namespace Name
+          type: string
+          description: The namespace where the Helm release will be installed.
+          default: sveltos-system
+          x-walrus-ui:
+            group: Basic
+            order: 4
+        chart_version:
+          title: Chart Version
+          type: string
+          description: The version of the Helm chart.
+          default: 0.44.3
+          x-walrus-ui:
+            group: Basic
+            order: 5
+        resources:
+          title: Resources
+          type: object
+          description: Resource limits and requests for Pods Helm release.
+          default:
+            accessManager:
+              limits:
+                cpu: 500m
+                memory: 256Mi
+              requests:
+                cpu: 10m
+                memory: 128Mi
+            addonController:
+              limits:
+                cpu: 500m
+                memory: 512Mi
+              requests:
+                cpu: 250m
+                memory: 256Mi
+            classifierManager:
+              limits:
+                cpu: 500m
+                memory: 256Mi
+              requests:
+                cpu: 100m
+                memory: 128Mi
+            conversionWebhook:
+              limits:
+                cpu: 500m
+                memory: 128Mi
+              requests:
+                cpu: 10m
+                memory: 64Mi
+            eventManager:
+              limits:
+                cpu: 500m
+                memory: 256Mi
+              requests:
+                cpu: 10m
+                memory: 128Mi
+            hcManager:
+              limits:
+                cpu: 500m
+                memory: 256Mi
+              requests:
+                cpu: 10m
+                memory: 128Mi
+            registerMgmtClusterJob:
+              limits:
+                cpu: 500m
+                memory: 256Mi
+              requests:
+                cpu: 250m
+                memory: 128Mi
+            scManager:
+              limits:
+                cpu: 500m
+                memory: 256Mi
+              requests:
+                cpu: 10m
+                memory: 128Mi
+            shardController:
+              limits:
+                cpu: 500m
+                memory: 256Mi
+              requests:
+                cpu: 10m
+                memory: 128Mi
+          additionalProperties:
+            properties:
+              limits:
+                properties:
+                  cpu:
+                    title: Cpu
+                    type: string
+                    x-walrus-ui:
+                      order: 1
+                  memory:
+                    title: Memory
+                    type: string
+                    x-walrus-ui:
+                      order: 2
+                required:
+                - cpu
+                - memory
+                title: Limits
+                type: object
+                x-walrus-ui:
+                  colSpan: 12
+                  order: 1
+              requests:
+                properties:
+                  cpu:
+                    title: Cpu
+                    type: string
+                    x-walrus-ui:
+                      order: 1
+                  memory:
+                    title: Memory
+                    type: string
+                    x-walrus-ui:
+                      order: 2
+                required:
+                - cpu
+                - memory
+                title: Requests
+                type: object
+                x-walrus-ui:
+                  colSpan: 12
+                  order: 2
+            required:
+            - limits
+            - requests
+            type: object
+            x-walrus-ui:
+              colSpan: 12
+          x-walrus-ui:
+            colSpan: 12
+            group: Basic
+            order: 6
       x-walrus-ui:
         groupOrder:
         - Basic
