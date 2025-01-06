@@ -10,12 +10,6 @@
 #   manifests_urls = var.manifests_urls
 # }
 
-resource "null_resource" "apply_sveltos_crds" {
-  provisioner "local-exec" {
-    command = "kubectl apply -f ${var.manifests_urls}"
-  }
-}
-
 #
 # Sveltos resources
 #

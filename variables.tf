@@ -28,12 +28,12 @@ EOF
 # CRDs Variables
 #
 
-variable "manifests_urls" {
-  description = "URLs list from the raw manifests"
-  type        = string
+# variable "manifests_urls" {
+#   description = "URLs list from the raw manifests"
+#   type        = string
 
-  default = "https://raw.githubusercontent.com/projectsveltos/sveltos/v0.41.0/manifest/crds/sveltos_crds.yaml"
-}
+#   default = "https://raw.githubusercontent.com/projectsveltos/sveltos/v0.41.0/manifest/crds/sveltos_crds.yaml"
+# }
 
 #
 # Sveltos variables

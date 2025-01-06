@@ -6,14 +6,6 @@ components:
     variables:
       type: object
       properties:
-        manifests_urls:
-          title: Manifests Urls
-          type: string
-          description: URLs list from the raw manifests
-          default: https://raw.githubusercontent.com/projectsveltos/sveltos/v0.41.0/manifest/crds/sveltos_crds.yaml
-          x-walrus-ui:
-            group: Basic
-            order: 2
         release_name:
           title: Release Name
           type: string
@@ -21,7 +13,7 @@ components:
           default: projectsveltos
           x-walrus-ui:
             group: Basic
-            order: 3
+            order: 2
         namespace_name:
           title: Namespace Name
           type: string
@@ -29,7 +21,7 @@ components:
           default: sveltos-system
           x-walrus-ui:
             group: Basic
-            order: 4
+            order: 3
         chart_version:
           title: Chart Version
           type: string
@@ -37,7 +29,7 @@ components:
           default: 0.44.3
           x-walrus-ui:
             group: Basic
-            order: 5
+            order: 4
         resources:
           title: Resources
           type: object
@@ -157,7 +149,7 @@ components:
           x-walrus-ui:
             colSpan: 12
             group: Basic
-            order: 6
+            order: 5
       x-walrus-ui:
         groupOrder:
         - Basic
