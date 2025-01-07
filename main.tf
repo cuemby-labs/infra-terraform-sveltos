@@ -83,7 +83,7 @@ resource "helm_release" "sveltos_dashboard" {
 
   name       = "sveltos-dashboard"
   repository = "https://github.com/projectsveltos/dashboard-helm-chart"
-  chart      = "dashboard"
+  chart      = "sveltos-dashboard"
   version    = var.dashboard_chart_version
   namespace  = var.namespace_name
 
