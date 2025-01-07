@@ -73,34 +73,35 @@ resource "helm_release" "sveltos" {
       shardController_limits_memory         = var.resources["shardController"]["limits"]["memory"],
       shardController_request_cpu           = var.resources["shardController"]["requests"]["cpu"],
       shardController_limits_cpu            = var.resources["shardController"]["limits"]["cpu"],
+      managementCluster                     = var.managementCluster,
     })
   ]
 }
 
 
-resource "helm_release" "sveltos_dashboard" {
-  depends_on = [kubernetes_namespace.sveltos]
+# resource "helm_release" "sveltos_dashboard" {
+#   depends_on = [kubernetes_namespace.sveltos]
 
-  name       = "sveltos-dashboard"
-  repository = "https://github.com/projectsveltos/dashboard-helm-chart"
-  chart      = "sveltos-dashboard"
-  version    = var.dashboard_chart_version
-  namespace  = var.namespace_name
+#   name       = "sveltos-dashboard"
+#   repository = "https://github.com/projectsveltos/dashboard-helm-chart"
+#   chart      = "sveltos-dashboard"
+#   version    = var.dashboard_chart_version
+#   namespace  = var.namespace_name
 
-  values = [
-    templatefile("${path.module}/dashboard_values.yaml.tpl", {
-      class_name                      = var.class_name,
-      domain_name                     = var.domain_name,
-      dash_domain_name                = local.dash_domain_name,
-      issuer_name                     = var.issuer_name,
-      issuer_kind                     = var.issuer_kind,
-      uiBackendManager_request_memory = var.resources["uiBackendManager"]["requests"]["memory"],
-      uiBackendManager_limits_memory  = var.resources["uiBackendManager"]["limits"]["memory"],
-      uiBackendManager_request_cpu    = var.resources["uiBackendManager"]["requests"]["cpu"],
-      uiBackendManager_limits_cpu     = var.resources["uiBackendManager"]["limits"]["cpu"],
-    })
-  ]
-}
+#   values = [
+#     templatefile("${path.module}/dashboard_values.yaml.tpl", {
+#       class_name                      = var.class_name,
+#       domain_name                     = var.domain_name,
+#       dash_domain_name                = local.dash_domain_name,
+#       issuer_name                     = var.issuer_name,
+#       issuer_kind                     = var.issuer_kind,
+#       uiBackendManager_request_memory = var.resources["uiBackendManager"]["requests"]["memory"],
+#       uiBackendManager_limits_memory  = var.resources["uiBackendManager"]["limits"]["memory"],
+#       uiBackendManager_request_cpu    = var.resources["uiBackendManager"]["requests"]["cpu"],
+#       uiBackendManager_limits_cpu     = var.resources["uiBackendManager"]["limits"]["cpu"],
+#     })
+#   ]
+# }
 
 #
 # Walrus Information
@@ -108,7 +109,7 @@ resource "helm_release" "sveltos_dashboard" {
 
 locals {
   context          = var.context
-  dash_domain_name = replace(var.domain_name, ".", "-")
+  # dash_domain_name = replace(var.domain_name, ".", "-")
 }
 
 module "submodule" {

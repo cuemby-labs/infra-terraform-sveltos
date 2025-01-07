@@ -1,3 +1,5 @@
+agent:
+  managementCluster: ${managementCluster}
 accessManager:
   resources:
     limits:
