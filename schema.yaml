@@ -6,14 +6,6 @@ components:
     variables:
       type: object
       properties:
-        release_name:
-          title: Release Name
-          type: string
-          description: The name of the Helm release.
-          default: projectsveltos
-          x-walrus-ui:
-            group: Basic
-            order: 2
         namespace_name:
           title: Namespace Name
           type: string
@@ -21,7 +13,7 @@ components:
           default: sveltos-system
           x-walrus-ui:
             group: Basic
-            order: 3
+            order: 2
         chart_version:
           title: Chart Version
           type: string
@@ -29,7 +21,47 @@ components:
           default: 0.44.3
           x-walrus-ui:
             group: Basic
+            order: 3
+        dashboard_chart_version:
+          title: Dashboard Chart Version
+          type: string
+          description: The version of the Sveltos Dashboard Helm chart.
+          default: 0.44.0
+          x-walrus-ui:
+            group: Basic
             order: 4
+        domain_name:
+          title: Domain Name
+          type: string
+          description: domain name for sveltos, e.g. 'dev.domainname.com'
+          default: dev.domainname.com
+          x-walrus-ui:
+            group: Basic
+            order: 5
+        issuer_name:
+          title: Issuer Name
+          type: string
+          description: 'origin issuer name for annotation cert-manager.io/issuer:'
+          default: origin-ca-issuer
+          x-walrus-ui:
+            group: Basic
+            order: 6
+        issuer_kind:
+          title: Issuer Kind
+          type: string
+          description: 'origin issuer kind for annotation cert-manager.io/issuer-kind:'
+          default: ClusterOriginIssuer
+          x-walrus-ui:
+            group: Basic
+            order: 7
+        class_name:
+          title: Class Name
+          type: string
+          description: Ingress className
+          default: nginx
+          x-walrus-ui:
+            group: Basic
+            order: 8
         resources:
           title: Resources
           type: object
@@ -98,6 +130,13 @@ components:
               requests:
                 cpu: 10m
                 memory: 128Mi
+            uiBackendManager:
+              limits:
+                cpu: 500m
+                memory: 128Mi
+              requests:
+                cpu: 10m
+                memory: 64Mi
           additionalProperties:
             properties:
               limits:
@@ -149,7 +188,7 @@ components:
           x-walrus-ui:
             colSpan: 12
             group: Basic
-            order: 5
+            order: 9
       x-walrus-ui:
         groupOrder:
         - Basic
